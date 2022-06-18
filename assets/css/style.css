@@ -1,0 +1,28 @@
+:root {
+    --primary: purple;
+    --secondary: white;
+    --tertiary:blue; 
+    font-size: 62.5%
+}
+
+header{
+    padding: 10px 10px 10px 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    color: var(--primary);
+}
+
+main{
+    text-align: center;
+}
+
+.btn{
+    background-color: var(--primary);
+    color: var(--secondary);
+    border: none;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 5px;
+    padding: 5px 15px 5px 15px;
+}
