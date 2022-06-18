@@ -1,8 +1,17 @@
+* {
+    box-sizing: border-box;
+    
+  }
 :root {
     --primary: purple;
     --secondary: white;
     --tertiary:blue; 
     font-size: 62.5%
+}
+
+body{
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 200%;
 }
 
 header{
@@ -14,9 +23,11 @@ header{
 }
 
 main{
+    align-items: center;
+    display: flex;
+    flex-direction: column;
     text-align: center;
 }
-
 .btn{
     background-color: var(--primary);
     color: var(--secondary);
@@ -26,3 +37,21 @@ main{
     border-radius: 5px;
     padding: 5px 15px 5px 15px;
 }
+
+@media (max-width: 690px) {
+    .btn {
+      font-size: 1rem;
+      margin: 16px 0px 0px 0px;
+      padding: 10px 15px;
+    }
+  
+    #password {
+      font-size: 1rem;
+    }
+  }
+  
+  @media (max-width: 500px) {
+    .btn {
+      font-size: 0.8rem;
+    }
+  }
