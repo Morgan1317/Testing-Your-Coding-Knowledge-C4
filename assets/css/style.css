@@ -38,6 +38,7 @@ main{
     margin: 5px;
     padding: 5px 25px 5px 35px;
 }
+
 .btn{
     background-color: var(--primary);
     color: var(--secondary);
