@@ -3,9 +3,9 @@
     
   }
 :root {
-    --primary: purple;
+    --primary: rgb(14, 94, 193);
     --secondary: white;
-    --tertiary:blue; 
+    --tertiary:rgb(15, 15, 138); 
     font-size: 62.5%
 }
 
@@ -28,6 +28,16 @@ main{
     flex-direction: column;
     text-align: center;
 }
+.flex{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+}
+.btn.list{
+    margin: 5px;
+    padding: 5px 25px 5px 35px;
+}
 .btn{
     background-color: var(--primary);
     color: var(--secondary);
@@ -36,6 +46,9 @@ main{
     text-decoration: none;
     border-radius: 5px;
     padding: 5px 15px 5px 15px;
+}
+.btn:hover{
+   background-color: var(--tertiary);
 }
 
 @media (max-width: 690px) {
