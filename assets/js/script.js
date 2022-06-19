@@ -8,27 +8,42 @@ var a1 = document.getElementById('a1');
 var a2 = document.getElementById('a2');
 var a3 = document.getElementById('a3');
 var a4 = document.getElementById('a4');
+var p2 = document.createElement('p');
+var input = document.createElement('input');
+var btn = document.createElement('button');
+btn.innerHTML = "Submit";
+var clear = 0; 
+
 
 list.style.display='none';
 
 // functions
 // start timer
 // starts with 120 seconds
-var time = 120;
+var time = 200;
 
 function timeInterval(){
     setInterval(() => {
-        if (time >= 1){
+        if (time >= 1)  {
             timerEl.textContent = 'Time: ' + time; 
             time--;
+        } else if (clear ===1){
+            return; 
         }
         else{
             timerEl.textContent = 'Time: 0';
-            clearInterval(timeInterval);
+            clearInterval(time);
+            youLost();
+            
         }
     }, 1000);
 }
-
+function youLost(){
+    title.textContent = 'Nice try, so close!';
+    instructions.textContent = 'Would you like to try again? Please refresh the page to play again!';
+    list.style.display='none';
+    questionEl.textContent = '';
+}
 function questionOne(){
     questionEl.textContent = 'Commonly used data types DO not Include:'
     a1.textContent = 'strings';
@@ -36,18 +51,19 @@ function questionOne(){
     a3.textContent = 'alerts';
     a4.textContent = 'numbers';
     a1.setAttribute('one','false');
-    a2.setAttribute('one','true');
-    a3.setAttribute('one','false');
+    a2.setAttribute('one','false');
+    a3.setAttribute('one','true');
     a4.setAttribute('one','false');
     list.addEventListener('click', function (event) {
         var element = event.target;
       
-        var state = element.getAttribute('one');
+        var one = element.getAttribute('one');
        
-        if (state === 'true') {
+        if (one === 'true') {
             questionTwo();
         } else {
             time = time - 10;
+            questionTwo();
         }
         
       });
@@ -66,12 +82,13 @@ function questionTwo(){
     list.addEventListener('click', function (event) {
         var element = event.target;
       
-        var state = element.getAttribute('two');
+        var two = element.getAttribute('two');
        
-        if (state === 'true') {
+        if (two === 'true') {
             questionThree();
         } else {
             time = time - 10;
+            questionThree();
         }
         
       });
@@ -90,13 +107,13 @@ function questionThree(){
     list.addEventListener('click', function (event) {
         var element = event.target;
       
-        var state = element.getAttribute('three');
+        var three = element.getAttribute('three');
        
-        if (state === 'true') {
+        if (three === 'true') {
             questionFour();
         } else {
             time = time - 10;
-            
+            questionFour();
         }
         
       });
@@ -114,16 +131,18 @@ function questionFour(){
     list.addEventListener('click', function (event) {
         var element = event.target;
       
-        var state = element.getAttribute('four');
+        var four = element.getAttribute('four');
        
-        if (state === 'true') {
+        if (four === 'true') {
             questionFive();
         } else {
             time = time - 10;
+            questionFive();
         }
         
       });
 }
+
 function questionFive(){
     questionEl.textContent = 'A very useful tool used during development and debugging for printing content to the debugger is:'
     a1.textContent = 'JavaScript';
@@ -137,28 +156,53 @@ function questionFive(){
     list.addEventListener('click', function (event) {
         var element = event.target;
       
-        var state = element.getAttribute('five');
+        var five = element.getAttribute('five');
        
-        if (state === 'true') {
-            list.style.display='none';
-            questionEl.textContent = ''
+        if (five === 'true') {
             time = time;
-            clearInterval(timeInterval);
-            timerEl.textContent = 'Time: 0';
             savePage();
-
         } else {
             time = time - 10;
+            savePage();
         }
         
       });
 }
 
 function savePage(){
-    title.textContent = 'All Done!'
+    list.style.display='none';
+    questionEl.textContent = '';
+    timerEl.textContent = 'Time: '
+    var finalTime = time;
+    title.textContent = 'All Done!';
     instructions.textContent = 'Your final score is ' + time; 
     timerEl.textContent = 'Time: 0';
-}
+    instructions.appendChild(p2);
+    p2.textContent = 'Enter Initials:';
+    p2.appendChild(input);
+    p2.appendChild(btn);
+    btn.className = 'btn';
+   
+    
+
+    btn.addEventListener("click", function(event) {
+        event.preventDefault();
+    
+        var user = {
+            initial: input.value,
+            finalScore: finalTime
+          };
+        
+        
+      
+        // set new submission to local storage 
+        localStorage.setItem("user", JSON.stringify(user));
+        
+      });
+      
+
+   }
+
 
 
 function startQuiz(){
@@ -170,9 +214,7 @@ function startQuiz(){
 
     // display quiz questions
     questionOne();
-  
 
-    
 
 };
 
