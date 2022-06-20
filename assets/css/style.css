@@ -21,6 +21,10 @@ header{
     justify-content: space-between;
     color: var(--primary);
 }
+.score{
+  color:var(--primary);
+  text-decoration: none;
+}
 
 main{
     align-items: center;

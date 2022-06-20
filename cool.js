@@ -22,18 +22,16 @@ list.style.display='none';
 // functions
 // start timer
 // starts with 120 seconds
-var time = 60;
-
-var regulator = 0;
+var time = 200;
 
 var c = 0;
 function timeInterval(){
     setInterval(() => {
-        if (time >= 1 && regulator < 5)  {
+        if (time >= 1 && c === 0)  {
             timerEl.textContent = 'Time: ' + time; 
             time--;
         }
-        else if(time >= 1 && regulator === 5){
+        else if(time >= 1 && c === 1){
             clearInterval(timeInterval)
         }
         else{
@@ -50,47 +48,30 @@ function youLost(){
     list.style.display='none';
     questionEl.textContent = '';
 }
-
-function answerTrueFalse() {
-    list.addEventListener('click', function (event) {
-        var element = event.target;
-      
-        var answer = element.getAttribute('answer');
-       
-        if (answer === 'false') {
-            time = time - 10;
-        };
-        regulator++;
-        switchQuestion();
-    });
-};
-
-function switchQuestion() {
-        switch (regulator) {
-            case 1:
-                questionTwo();
-            case 2:
-                questionThree();
-            case 3:
-                questionFour();
-            case 4:
-                questionFive();
-            default:
-                savePage();
-        }    
-};
-
 function questionOne(){
     questionEl.textContent = 'Commonly used data types DO not Include:'
     a1.textContent = 'strings';
     a2.textContent = 'booleans';
     a3.textContent = 'alerts';
     a4.textContent = 'numbers';
-    a1.setAttribute('answer','false');
-    a2.setAttribute('answer','false');
-    a3.setAttribute('answer','true');
-    a4.setAttribute('answer','false');
-    answerTrueFalse();
+    a1.setAttribute('one','false');
+    a2.setAttribute('one','false');
+    a3.setAttribute('one','true');
+    a4.setAttribute('one','false');
+    list.addEventListener('click', function (event) {
+        var element = event.target;
+      
+        var one = element.getAttribute('one');
+       
+        if (one === 'true') {
+            return questionTwo();
+        } else {
+            time = time - 10;
+            return questionTwo();
+        }
+        
+      });
+
 }
 function questionTwo(){
     questionEl.textContent = 'The condition in an if/else statement is enclosed with ________.'
@@ -98,11 +79,23 @@ function questionTwo(){
     a2.textContent = 'curly brackets';
     a3.textContent = 'parenthesis';
     a4.textContent = 'square brackets';
-    a1.setAttribute('answer','false');
-    a2.setAttribute('answer','false');
-    a3.setAttribute('answer','true');
-    a4.setAttribute('answer','false');
-    switchQuestion();
+    a1.setAttribute('two','false');
+    a2.setAttribute('two','false');
+    a3.setAttribute('two','true');
+    a4.setAttribute('two','false');
+    list.addEventListener('click', function (event) {
+        var elementTwo = event.target;
+      
+        var two = elementTwo.getAttribute('two');
+       
+        if (two === 'true') {
+            return questionThree();
+        } else {
+            time = time - 10;
+            return questionThree();
+        } 
+        
+      });
 }
 
 function questionThree(){
@@ -111,11 +104,23 @@ function questionThree(){
     a2.textContent = 'other arrays';
     a3.textContent = 'booleans';
     a4.textContent = 'all of the above';
-    a1.setAttribute('answer','false');
-    a2.setAttribute('answer','false');
-    a3.setAttribute('answer','false');
-    a4.setAttribute('answer','true');
-    switchQuestion();
+    a1.setAttribute('three','false');
+    a2.setAttribute('three','false');
+    a3.setAttribute('three','false');
+    a4.setAttribute('three','true');
+    list.addEventListener('click', function (event) {
+        var elementThree = event.target;
+      
+        var three = elementThree.getAttribute('three');
+       
+        if (three === 'true') {
+            return questionFour();
+        } else {
+            time = time - 10;
+            return questionFour();
+        }
+        
+      });
 }
 function questionFour(){
     questionEl.textContent = 'String values must be enclosed within _______ when being assigned to variables.'
@@ -123,11 +128,23 @@ function questionFour(){
     a2.textContent = 'curly brackets';
     a3.textContent = 'quotes';
     a4.textContent = 'parenthesis';
-    a1.setAttribute('answer','false');
-    a2.setAttribute('answer','true');
-    a3.setAttribute('answer','false');
-    a4.setAttribute('answer','false');
-    switchQuestion();
+    a1.setAttribute('four','false');
+    a2.setAttribute('four','true');
+    a3.setAttribute('four','false');
+    a4.setAttribute('four','false');
+    list.addEventListener('click', function (event) {
+        var elementFour = event.target;
+      
+        var four = elementFour.getAttribute('four');
+       
+        if (four === 'true') {
+            return questionFive();
+        } else {
+            time = time - 10;
+            return questionFive();
+        }
+        
+      });
 }
 
 function questionFive(){
@@ -136,14 +153,26 @@ function questionFive(){
     a2.textContent = 'terminal/bash';
     a3.textContent = 'for loops';
     a4.textContent = 'console.log';
-    a1.setAttribute('answer','false');
-    a2.setAttribute('answer','false');
-    a3.setAttribute('answer','false');
-    a4.setAttribute('answer','true');
-    switchQuestion();
+    a1.setAttribute('five','false');
+    a2.setAttribute('five','false');
+    a3.setAttribute('five','false');
+    a4.setAttribute('five','true');
+    list.addEventListener('click', function (event) {
+        var elementFive = event.target;
+      
+        var five = element.getAttribute('five');
+        if (five === 'true') {
+            return savePage();
+        } else {
+            time = time - 10;
+            return savePage();
+        }
+        
+      });
 }
 
 function savePage(){
+    c = 1; 
     clearInterval(timeInterval);
     list.style.display='none';
     questionEl.textContent = '';
@@ -175,6 +204,9 @@ function savePage(){
         
       });
 
+      saveData();
+      return c;
+
    }
 
 
@@ -196,9 +228,9 @@ function startQuiz(){
 
 startButton.addEventListener('click',startQuiz);
 
-// function saveData() {
-//     var data = parseInt(localStorage.getItem('user'))
-//     var dataText = document.querySelector("#high-scores");
-//     dataText.value = data;
-// };
+function saveData() {
+    var data = parseInt(localStorage.getItem('user'))
+    var dataText = document.querySelector("#high-scores");
+    dataText.value = data;
+};
 
