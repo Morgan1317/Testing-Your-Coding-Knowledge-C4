@@ -24,16 +24,16 @@ list.style.display='none';
 // starts with 120 seconds
 var time = 60;
 
-var regulator = 0;
+var fakeArray = 0;
 
 var c = 0;
 function timeInterval(){
     setInterval(() => {
-        if (time >= 1 && regulator < 5)  {
+        if (time >= 1 && fakeArray < 5)  {
             timerEl.textContent = 'Time: ' + time; 
             time--;
         }
-        else if(time >= 1 && regulator === 5){
+        else if(time >= 1 && fakeArray === 5){
             clearInterval(timeInterval)
         }
         else{
@@ -60,13 +60,13 @@ function answerTrueFalse() {
         if (answer === 'false') {
             time = time - 10;
         };
-        regulator++;
+        fakeArray++;
         switchQuestion();
     });
 };
 
 function switchQuestion() {
-        switch (regulator) {
+        switch (fakeArray) {
             case 1:
                 questionTwo();
             case 2:
@@ -162,20 +162,16 @@ function savePage(){
 
     btn.addEventListener("click", function(event) {
         event.preventDefault();
-    
         var user = {
             initial: input.value,
             finalScore: finalTime
           };
-        
-        
-      
         // set new submission to local storage 
         localStorage.setItem("user", JSON.stringify(user));
         
-      });
+    });
 
-   }
+};
 
 
 
