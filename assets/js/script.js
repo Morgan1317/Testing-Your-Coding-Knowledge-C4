@@ -4,6 +4,7 @@ var instructions = document.getElementById('paragraph');
 var questionEl = document.getElementById('question');
 var title = document.getElementById('title');
 var list = document.getElementById('list')
+var scoreEl = document.getElementById('score');
 var a1 = document.getElementById('a1');
 var a2 = document.getElementById('a2');
 var a3 = document.getElementById('a3');
@@ -46,10 +47,20 @@ function timeInterval(){
 }
 function youLost(){
     title.textContent = 'Nice try, so close!';
-    instructions.textContent = 'Would you like to try again? Please refresh the page to play again!';
+    instructions.textContent = 'Would you like to try again?';
     list.style.display='none';
     questionEl.textContent = '';
+    p2.textContent = '';
+    var btn4 = document.createElement('button');
+    instructions.appendChild(btn4);
+    btn4.className = 'btn';
+    btn4.innerHTML = "Try Again";
+    btn4.addEventListener('click',function(){
+        window.location.reload();
+    });
 }
+
+
 
 function answerTrueFalse() {
     list.addEventListener('click', function (event) {
@@ -172,7 +183,40 @@ function savePage(){
     });
 
 };
-
+scoreEl.addEventListener("click", function() {
+    var btn2 = document.createElement('button');
+    var btn3 = document.createElement('button');
+    btn2.innerHTML = "Go Back";
+    btn3.innerHTML = "Clear High Scores";
+    title.textContent ='High Scores';
+    instructions.textContent='';
+    list.style.display='none';
+    startButton.style.display = 'none';
+    objectUser = JSON.parse(window.localStorage.getItem('user'));
+    title.appendChild(p2);
+    p2.textContent = objectUser.initial + '-' + objectUser.finalScore;
+    title.appendChild(btn2);
+    title.appendChild(btn3);
+    btn2.className = 'btn';
+    btn3.className = 'btn';
+    
+    
+  
+    btn2.addEventListener('click',function(){
+        window.location.reload();
+    });
+    btn3.addEventListener('click',function(){
+  
+        window.localStorage.clear();
+        p2.textContent = "";
+        title.appendChild(btn2);
+        title.appendChild(btn3);
+  
+       
+    });
+   
+  });
+ 
 
 
 function startQuiz(){
@@ -180,6 +224,8 @@ function startQuiz(){
     instructions.textContent='';
     list.style.display='inherit';
     startButton.style.display = 'none';
+
+
     timeInterval();
 
     // display quiz questions
@@ -192,8 +238,3 @@ function startQuiz(){
 
 startButton.addEventListener('click',startQuiz);
 
-// function saveData() {
-//     var data = parseInt(localStorage.getItem('user'))
-//     var dataText = document.querySelector("#high-scores");
-//     dataText.value = data;
-// };
