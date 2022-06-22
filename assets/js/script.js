@@ -197,4 +197,3 @@ startButton.addEventListener('click',startQuiz);
 //     var dataText = document.querySelector("#high-scores");
 //     dataText.value = data;
 // };
-
