@@ -1,0 +1,75 @@
+* {
+    box-sizing: border-box;
+    
+  }
+:root {
+    --primary: rgb(14, 94, 193);
+    --secondary: white;
+    --tertiary:rgb(15, 15, 138); 
+    font-size: 62.5%
+}
+
+body{
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 200%;
+}
+
+header{
+    padding: 10px 10px 10px 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    color: var(--primary);
+}
+.score{
+  color:var(--primary);
+  text-decoration: none;
+}
+
+main{
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+.flex{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+}
+.btn.list{
+    margin: 5px;
+    padding: 5px 25px 5px 35px;
+}
+
+.btn{
+    background-color: var(--primary);
+    color: var(--secondary);
+    border: none;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 5px;
+    padding: 5px 15px 5px 15px;
+}
+.btn:hover{
+   background-color: var(--tertiary);
+}
+
+@media (max-width: 690px) {
+    .btn {
+      font-size: 1rem;
+      margin: 16px 0px 0px 0px;
+      padding: 10px 15px;
+    }
+  
+    #password {
+      font-size: 1rem;
+    }
+  }
+  
+  @media (max-width: 500px) {
+    .btn {
+      font-size: 0.8rem;
+    }
+  }
