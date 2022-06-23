@@ -37,7 +37,7 @@ The image below shows the working when the page is loaded.
 
 ***LINK TO DEPLOYED APPLICATION***
 
-https://github.com/Morgan1317/Testing-Your-Coding-Knowledge-C4
+https://morgan1317.github.io/Testing-Your-Coding-Knowledge-C4/
 
 
 
