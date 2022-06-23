@@ -1,6 +1,6 @@
 # Testing-Your-Coding-Knowledge-C4
 
-###CODING QUIZ###
+### CODING QUIZ ###
 
 **Purpose**
 
