@@ -12,6 +12,7 @@ var a4 = document.getElementById('a4');
 var p2 = document.createElement('p');
 var input = document.createElement('input');
 var btn = document.createElement('button');
+var body = document.getElementById('body');
 
 btn.innerHTML = "Submit";
 
@@ -92,6 +93,7 @@ function switchQuestion() {
 };
 
 function questionOne(){
+    scoreEl.textContent = '';
     questionEl.textContent = 'Commonly used data types DO not Include:'
     a1.textContent = 'strings';
     a2.textContent = 'booleans';
@@ -157,6 +159,7 @@ function questionFive(){
 
 function savePage(){
     clearInterval(timeInterval);
+    scoreEl.textContent = 'View High Scores'
     list.style.display='none';
     questionEl.textContent = '';
     timerEl.textContent = 'Time: '
@@ -191,7 +194,7 @@ function savePage(){
 
 };
 scoreEl.addEventListener("click", function() {
-
+   
     var btn2 = document.createElement('button');
     var btn3 = document.createElement('button');
     btn2.innerHTML = "Go Back";
@@ -200,18 +203,20 @@ scoreEl.addEventListener("click", function() {
     instructions.textContent='';
     list.style.display='none';
     startButton.style.display = 'none';
-    debugger;
+    
     scoreArray = JSON.parse(window.localStorage.getItem('user'));
     p2.textContent = '';
-    title.appendChild(p2);
-
+  
+    if (!scoreArray){
+        scoreArray = [];
+    };
     
     
     title.appendChild(btn2);
     title.appendChild(btn3);
     btn2.className = 'btn';
     btn3.className = 'btn';
-    console.log(scoreArray);
+   
     
     scoreArray.forEach((item)=>{
     var li = document.createElement("li");
@@ -221,16 +226,16 @@ scoreEl.addEventListener("click", function() {
     })
   
     btn2.addEventListener('click',function(){
+       
         window.location.reload();
     });
     btn3.addEventListener('click',function(){
   
         window.localStorage.clear();
-        li.textContent = "";
         title.appendChild(btn2);
         title.appendChild(btn3);
-  
-       
+        title.setAttribute('style', 'color:white')
+        
     });
    
   });
