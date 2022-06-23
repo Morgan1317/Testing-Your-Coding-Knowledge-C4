@@ -6,7 +6,7 @@
 
 Create a timed quiz on JavaScript that store High scores, so the user can gauge progress with others
 
-***Summary**
+**Summary**
 
 I utilized functions to perform most of the actions that work to change between pages and questions. 
 When the user gets on the page they are able to press start and a timer begins as a series of 5 questions happen. If the user is wrong, 10 seconds are deducted from the timer and it moves onto the question, otherwise if they are correct it simply moves to the next question. If the user fails to complete the questions in time they are prompted to try again if they wish to do so. 
