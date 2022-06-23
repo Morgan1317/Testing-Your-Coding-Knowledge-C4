@@ -27,7 +27,7 @@ var time = 60;
 
 var fakeArray = 0;
 
-var c = 0;
+
 function timeInterval(){
     setInterval(() => {
         if (time >= 1 && fakeArray < 5)  {
@@ -154,6 +154,7 @@ function questionFive(){
     switchQuestion();
 }
 
+
 function savePage(){
     clearInterval(timeInterval);
     list.style.display='none';
@@ -178,12 +179,19 @@ function savePage(){
             finalScore: finalTime
           };
         // set new submission to local storage 
-        localStorage.setItem("user", JSON.stringify(user));
+        var scoreArray = JSON.parse(localStorage.getItem("user"));
+        
+        if (!scoreArray){
+            scoreArray = [];
+        };
+        scoreArray.push(user);
+        localStorage.setItem("user", JSON.stringify(scoreArray));
         
     });
 
 };
 scoreEl.addEventListener("click", function() {
+
     var btn2 = document.createElement('button');
     var btn3 = document.createElement('button');
     btn2.innerHTML = "Go Back";
@@ -192,15 +200,25 @@ scoreEl.addEventListener("click", function() {
     instructions.textContent='';
     list.style.display='none';
     startButton.style.display = 'none';
-    objectUser = JSON.parse(window.localStorage.getItem('user'));
+    debugger;
+    scoreArray = JSON.parse(window.localStorage.getItem('user'));
+    p2.textContent = '';
     title.appendChild(p2);
-    p2.textContent = objectUser.initial + '-' + objectUser.finalScore;
+
+    
+    
     title.appendChild(btn2);
     title.appendChild(btn3);
     btn2.className = 'btn';
     btn3.className = 'btn';
+    console.log(scoreArray);
     
-    
+    scoreArray.forEach((item)=>{
+    var li = document.createElement("li");
+    li.textContent = item.initial + '-' + item.finalScore;
+    title.appendChild(li);
+    li.setAttribute('style','list-style-type:none');
+    })
   
     btn2.addEventListener('click',function(){
         window.location.reload();
@@ -208,7 +226,7 @@ scoreEl.addEventListener("click", function() {
     btn3.addEventListener('click',function(){
   
         window.localStorage.clear();
-        p2.textContent = "";
+        li.textContent = "";
         title.appendChild(btn2);
         title.appendChild(btn3);
   
